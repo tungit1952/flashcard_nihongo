@@ -1,0 +1,77 @@
+### Register
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Tùng xèng",
+  "username": "thanhtung200ng@gmail.com",
+  "password": "Thanhtung123@"
+}
+
+### Login
+
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "thanhtung200ng@gmail.com",
+  "password": "Thanhtung123@"
+}
+
+### Create Vocabulary
+POST {{host}}/api/vocabularies
+Content-Type: application/json
+
+{
+  "word": "犬",
+  "type": "kanji",
+  "translation": "Chó",
+  "example": {
+    "sentence": "犬が好きです。",
+    "translation": "Tôi thích chó."
+  },
+  "readings": {
+    "on": ["けん"],
+    "kun": ["いぬ"]
+  },
+  "level": 1,
+  "description": "Từ này thường dùng để chỉ động vật."
+}
+
+### List Vocabularies
+GET {{host}}/api/vocabularies
+Content-Type: application/json
+
+### Update Vocabulary
+< {%
+    request.variables.set("id", '66ff93fbfd02ceab050f28f9')
+%}
+PUT {{host}}/api/vocabularies/{{id}}
+Content-Type: application/json
+
+{
+  "word": "犬",
+  "type": "kanji",
+  "translation": "Chó",
+  "example": {
+    "sentence": "犬が好きです。",
+    "translation": "Tôi thích chó."
+  },
+  "readings": {
+    "on": [
+      "けん"
+    ],
+    "kun": [
+      "いぬ"
+    ]
+  },
+  "level": 1,
+  "description": "Từ này thường dùng để chỉ động vật."
+}
+
+### Delete Vocabulary
+< {%
+    request.variables.set("id", '66ff93fbfd02ceab050f28f9')
+%}
+DELETE {{host}}/api/vocabularies/{{id}}
+Content-Type: application/json
