@@ -21,6 +21,14 @@ const authController = {
         } catch (error) {
             next(error);
         }
+    },
+    logout: (request, response, next) => {
+        try {
+            response.clearCookie('token');
+            response.status(200).json({ message: 'Đã đăng xuất thành công' });
+        } catch (error) {
+            next(error);
+        }
     }
 }
 module.exports = authController

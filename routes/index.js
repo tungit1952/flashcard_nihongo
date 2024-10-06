@@ -10,6 +10,9 @@ router.post('/auth/register', authController.register);
 // POST /api/auth/login
 router.post('/auth/login', authController.login);
 
+// POST /api/auth/logout
+router.post('/auth/logout', authMiddleware.validateToken, authController.logout);
+
 // Vocabulary Routes
 // POST /api/vocabularies - Tạo từ vựng mới
 router.post('/vocabularies', authMiddleware.validateToken, vocabularyController.create);

@@ -3,8 +3,8 @@ POST {{host}}/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "Tùng xèng",
-  "username": "thanhtung200ng@gmail.com",
+  "name": "Thanh Tùng",
+  "username": "thanhtung200ng",
   "password": "Thanhtung123@"
 }
 

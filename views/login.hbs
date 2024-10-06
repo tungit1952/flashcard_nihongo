@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login V12</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/assets/images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/assets/">
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/animate/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/css-hamburgers/hamburgers.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/select2/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+    <meta name="robots" content="noindex, follow">
+    <script nonce="943b6494-6e89-4da7-af72-db08480ea0fb">try {
+        (function (w, d) {
+            !function (j, k, l, m) {
+                if (j.zaraz) console.error("zaraz is loaded twice"); else {
+                    j[l] = j[l] || {};
+                    j[l].executed = [];
+                    j.zaraz = {deferred: [], listeners: []};
+                    j.zaraz._v = "5808";
+                    j.zaraz._n = "943b6494-6e89-4da7-af72-db08480ea0fb";
+                    j.zaraz.q = [];
+                    j.zaraz._f = function (n) {
+                        return async function () {
+                            var o = Array.prototype.slice.call(arguments);
+                            j.zaraz.q.push({m: n, a: o})
+                        }
+                    };
+                    for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p);
+                    j.zaraz.init = () => {
+                        var q = k.getElementsByTagName(m)[0], r = k.createElement(m),
+                                s = k.getElementsByTagName("title")[0];
+                        s && (j[l].t = k.getElementsByTagName("title")[0].text);
+                        j[l].x = Math.random();
+                        j[l].w = j.screen.width;
+                        j[l].h = j.screen.height;
+                        j[l].j = j.innerHeight;
+                        j[l].e = j.innerWidth;
+                        j[l].l = j.location.href;
+                        j[l].r = k.referrer;
+                        j[l].k = j.screen.colorDepth;
+                        j[l].n = k.characterSet;
+                        j[l].o = (new Date).getTimezoneOffset();
+                        if (j.dataLayer) for (const t of Object.entries(Object.entries(dataLayer).reduce(((u, v) => ({...u[1], ...v[1]})), {}))) zaraz.set(t[0], t[1], {scope: "page"});
+                        j[l].q = [];
+                        for (; j.zaraz.q.length;) {
+                            const w = j.zaraz.q.shift();
+                            j[l].q.push(w)
+                        }
+                        r.defer = !0;
+                        for (const x of [localStorage, sessionStorage]) Object.keys(x || {}).filter((z => z.startsWith("_zaraz_"))).forEach((y => {
+                            try {
+                                j[l]["z_" + y.slice(7)] = JSON.parse(x.getItem(y))
+                            } catch {
+                                j[l]["z_" + y.slice(7)] = x.getItem(y)
+                            }
+                        }));
+                        r.referrerPolicy = "origin";
+                        r.src = "../../../cdn-cgi/zaraz/sd0d9.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l])));
+                        q.parentNode.insertBefore(r, q)
+                    };
+                    ["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init)
+                }
+            }(w, d, "zarazData", "script");
+            window.zaraz._p = async mP => new Promise((mQ => {
+                if (mP) {
+                    mP.e && mP.e.forEach((mR => {
+                        try {
+                            const mS = d.querySelector("script[nonce]"), mT = mS?.nonce || mS?.getAttribute("nonce"),
+                                    mU = d.createElement("script");
+                            mT && (mU.nonce = mT);
+                            mU.innerHTML = mR;
+                            mU.onload = () => {
+                                d.head.removeChild(mU)
+                            };
+                            d.head.appendChild(mU)
+                        } catch (mV) {
+                            console.error(`Error executing script: ${mR}\n`, mV)
+                        }
+                    }));
+                    Promise.allSettled((mP.f || []).map((mW => fetch(mW[0], mW[1]))))
+                }
+                mQ()
+            }));
+            zaraz._p({"e": ["(function(w,d){})(window,document)"]});
+        })(window, document)
+    } catch (e) {
+        throw fetch("/cdn-cgi/zaraz/t"), e;
+    }
+    ;</script>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-b-30">
+            <form class="login100-form validate-form" id="loginForm">
+                <div class="login100-form-avatar">
+                    <img src="/assets/images/avatar-01.jpg" alt="AVATAR">
+                </div>
+
+                <span class="login100-form-title p-t-20 p-b-45">
+						フォン・トゥイさんは日本語を勉強しています
+					</span>
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
+                    <input class="input100" type="text" id="username" name="username" placeholder="アカウント">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                    <input class="input100" type="password" id="password" name="password" placeholder="パスワード">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+                </div>
+
+                <div class="container-login100-form-btn p-t-10">
+                    <button type="button" class="login100-form-btn" id="loginButton">
+                        学校に行きましょう
+                    </button>
+                </div>
+
+                <!--                <div class="text-center w-full p-t-25 p-b-230">-->
+                <!--                    <a href="#" class="txt1">-->
+                <!--                        Forgot Username / Password?-->
+                <!--                    </a>-->
+                <!--                </div>-->
+
+                <!--                <div class="text-center w-full">-->
+                <!--                    <a class="txt1" href="#">-->
+                <!--                        Create new account-->
+                <!--                        <i class="fa fa-long-arrow-right"></i>-->
+                <!--                    </a>-->
+                <!--                </div>-->
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/popper.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/select2/select2.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+    document.getElementById('loginButton').addEventListener('click', function () {
+        login();
+    })
+    document.getElementById('loginForm').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            login();
+        }
+    });
+
+    function login(){
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const payload = {
+            username: username,
+            password: password
+        };
+        axios.post('/api/auth/login', payload, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            if(response.data.user){
+                localStorage.setItem('user',JSON.stringify(response.data.user))
+                window.location.href = '/';
+            }
+        }).catch(function (error) {
+            alert('Đăng nhập thất bại!');
+            console.error(error);
+        });
+    }
+</script>
+</body>
+
+</html>
