@@ -7,7 +7,7 @@ const dbPassword = process.env.DB_PASSWORD;
 const dbDatabase = process.env.DB_DATABASE;
 
 const dbURI = `mongodb://${dbUsername}:${dbPassword}@${dbHost}:${dbPort}/${dbDatabase}`;
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB đã ok'))
+mongoose.connect(dbURI)
+    .then(() => console.log('MongoDB đã OK'))
     .catch(err => console.error('MongoDB tịt:', err));
 module.exports = mongoose
