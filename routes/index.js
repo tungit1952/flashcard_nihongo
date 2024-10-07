@@ -4,7 +4,7 @@ const authController = require("../controllers/auth/auth.controller");
 const vocabularyController = require("../controllers/vocabulary/vocabulary.controller");
 const tagController = require("../controllers/tags/tag.controller");
 const router = express.Router();
-
+const upload = require('../config/multerConfig');
 // POST /api/auth/register
 router.post('/auth/register', authController.register);
 
@@ -16,7 +16,7 @@ router.post('/auth/logout', authMiddleware.validateToken, authController.logout)
 
 // Vocabulary Routes
 // POST /api/vocabularies - Tạo từ vựng mới
-router.post('/vocabularies/create', authMiddleware.validateToken, vocabularyController.create);
+router.post('/vocabularies/create', upload.single('audio'), vocabularyController.create);
 
 // GET /api/vocabularies - Lấy danh sách tất cả từ vựng
 router.get('/vocabularies', authMiddleware.validateToken, vocabularyController.list);

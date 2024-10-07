@@ -10,24 +10,15 @@ const Vocabulary = new Schema({
         type: String,
         require: true
     },
-    readings: {
+    audio: {
         type: String,
-        require: true
-    },
-    description: {
-        type: String
     },
     tags:{
       type: Array,
       default: []
     },
     example: {
-        sentence: {
-            type: String
-        },
-        translation: {
-            type: String
-        }
+        type: String,
     },
 })
 Vocabulary.plugin(mongoosePaginate);

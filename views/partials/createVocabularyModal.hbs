@@ -13,20 +13,25 @@
                 </div>
                 <div class="flex mt-3">
                     <label class="text-[#126265] mb-0 self-center w-[10%]" for="key_input_word">Dịch:</label>
-                    <input type="text" id="key_input_word"
+                    <input type="text" id="translation_input_word"
                            class="w-full rounded-md border border-[#c5c5c5] px-3 py-2 text-sm focus:border-[#126265] focus:outline focus:outline-1"
                            placeholder="Dịch nghĩa của từ"/>
                 </div>
                 <div class="flex mt-3">
                     <label class="text-[#126265] h-[38px] mt-2 self-center w-[10%]" for="key_input_word">Tags:</label>
                         <select class="select-muti border border-[#c5c5c5]" name="states[]" multiple="multiple" style="width: 100% !important">
-                            <option value="AL">Alabama</option>
-                            <option value="WY">Wyoming</option>
                         </select>
                 </div>
-                <textarea id="description_input_tag"
+                <div class="flex">
+                    <label class="text-[#126265] h-[38px] self-center w-[10%]" for="key_input_word">Ví dụ:</label>
+                <textarea id="example_input_tag"
                           class="w-full mt-3 rounded-md border border-[#c5c5c5] h-[100px] px-3 py-2 text-sm focus:border-[#126265] focus:outline focus:outline-1"
                           name="" placeholder="Viết ví dụ cho từ này"></textarea>
+                </div>
+                <div class="flex mt-3">
+                    <label class="text-[#126265] mb-0 self-center w-[10%]" for="key_input_word">Audio:</label>
+                    <input type="file" id="audio_input" placeholder="Link Audio"/>
+                </div>
             </div>
             <div class="p-4 bg-gray-100 text-right">
                 <button id="addVocabularyBtn" class="bg-[#126265] hover:bg-[#085456] text-white px-4 py-2 rounded">
@@ -40,17 +45,36 @@
     </div>
 </div>
 <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        const resTag = await fetchTags()
+        const selectElement = document.querySelector('.select-muti');
+        resTag.data.forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag._id;
+            option.textContent = tag.key;
+            selectElement.appendChild(option);
+        });
+    })
     document.getElementById('addVocabularyBtn').addEventListener('click', async function () {
         try {
             const closeCreateVocabularyModalBtn = document.getElementById('closeCreateVocabularyModalBtn');
             const keyInputWord = document.getElementById('key_input_word');
+            const translationInput = document.getElementById('translation_input_word');
+            const exampleInput = document.getElementById('example_input_tag');
+            const audioInput = document.getElementById('audio_input');
+            const selectElement = document.querySelector('.select-muti');
+
+            const selectedTags = Array.from(selectElement.selectedOptions).map(option => option.value);
+
             const payload = {
-                key: keyInputWord.value,
-            }
-            const response = await addTag(payload)
+                word: keyInputWord.value,
+                translation: translationInput.value,
+                audio: audioInput.files[0],
+                tags: selectedTags,
+                example: exampleInput.value
+            };
+            const response = await addVocabulary(payload)
             if (response.data) {
-                await fetchTags()
-                await updateTagsInVocabulary()
                 closeCreateVocabularyModalBtn.click();
             }
         } catch (e) {
