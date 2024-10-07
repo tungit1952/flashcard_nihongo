@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Create Vocabulary
-POST {{host}}/api/vocabularies
+POST {{host}}/api/vocabularies/create
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ### List Vocabularies
-GET {{host}}/api/vocabularies
+GET {{host}}/api/vocabularies?page=1&limit=10
 Content-Type: application/json
 
 ### Update Vocabulary
@@ -75,3 +75,12 @@ Content-Type: application/json
 %}
 DELETE {{host}}/api/vocabularies/{{id}}
 Content-Type: application/json
+
+### Create Tag
+POST {{host}}/api/tags/create
+Content-Type: application/json
+
+{
+  "key": "N5",
+  "description": "Đây là trình độ sơ cấp 1, sẽ bắt đầu học từ bảng chữ cái Hiragana, Katakana và học những chữ hán đơn giản. Có thể đọc hiểu và nghe được thông tin trong các cụm từ, câu, đoạn văn dạng cố định viết bằng chữ hiragana, katakana và chữ hán cơ bản dùng trong sinh hoạt hàng ngày."
+}

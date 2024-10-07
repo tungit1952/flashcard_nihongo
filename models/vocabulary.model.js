@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const typeVocabulary = require('../config/type_vocabulary.config')
-const level = require('../config/level_nihongo.config')
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Vocabulary = new Schema({
     word: {
         type: String,
         require: true
-    },
-    type: {
-        type: String,
-        default: typeVocabulary.VOCABULARY
     },
     translation: {
         type: String,
@@ -19,12 +14,12 @@ const Vocabulary = new Schema({
         type: String,
         require: true
     },
-    level: {
-        type: Number,
-        default: level.N5
-    },
     description: {
         type: String
+    },
+    tags:{
+      type: Array,
+      default: []
     },
     example: {
         sentence: {
@@ -35,5 +30,5 @@ const Vocabulary = new Schema({
         }
     },
 })
-
+Vocabulary.plugin(mongoosePaginate);
 module.exports = mongoose.model('Vocabularies', Vocabulary);

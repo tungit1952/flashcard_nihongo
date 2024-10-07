@@ -11,7 +11,7 @@ const vocabularyController = {
 
     list: async (request, response, next) => {
         try {
-            const vocabularies = await VocabularyService.list();
+            const vocabularies = await VocabularyService.list(request.query);
             response.status(200).json(vocabularies);
         } catch (error) {
             next(error);

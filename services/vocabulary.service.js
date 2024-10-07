@@ -7,8 +7,22 @@ const VocabularyService = {
         const newVocabulary = new Vocabulary(body);
         return await newVocabulary.save();
     },
-    async list() {
-        return await Vocabulary.find();
+    async list(query) {
+        const { page, limit, tags = [] } = query;
+        if(page && limit){
+            const options = {
+                page: page,
+                limit: limit,
+                sort: { _id: -1 },
+            };
+            const filter = {};
+            if (tags.length > 0) {
+                filter.tags = { $all: tags };
+            }
+            return Vocabulary.paginate(filter, options);
+        }else{
+            return Vocabulary.find();
+        }
     },
 
     async update(id, body) {

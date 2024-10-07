@@ -1,0 +1,18 @@
+.tag_active{
+    color: white !important;
+    background: #126265;
+}
+.select-muti{
+    height: 38px !important;
+}
+span.select2-selection.select2-selection--multiple {
+    height: 38px;
+    border: 1px solid #c5c5c5;
+}
+textarea.select2-search__field::placeholder {
+    color: #969696;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-top: 1px;
+    height: 100%;
+}
