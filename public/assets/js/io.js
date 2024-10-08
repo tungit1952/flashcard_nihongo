@@ -83,12 +83,7 @@ async function updateListInVocabulary() {
                        <p class="text-sm font-semibold text-slate-700">${vocab.reading}</p>
                 </td>
                 <td class="p-4 border-b border-slate-200">
-                <div class="w-max">
-                        <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                            <span class="">${vocab.reading}</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-slate-500">${vocab.tags.join(', ')}</p>
+                    <i onclick="playAudio(${vocab.audio})" class="ri-volume-down-fill text-[1.25rem] text-[#126265] cursor-pointer"></i>
                 </td>
                 <td class="p-4 border-b border-slate-200">
                     <div class="flex gap-[10px]">
@@ -98,12 +93,23 @@ async function updateListInVocabulary() {
                 </td>
             `;
         const deleteIcon = row.querySelector('.ri-delete-bin-6-line');
+        const audioIcon = row.querySelector('.ri-volume-down-fill');
         deleteIcon.addEventListener('click', () => removeRecordInVocabulary(vocab._id));
+        audioIcon.addEventListener('click', () => playAudio(vocab.audio));
 
         vocabTableBody.appendChild(row);
     });
 }
-
+function playAudio(mp3Url) {
+    const audio = new Audio(mp3Url);
+    audio.play()
+        .then(() => {
+            console.log("Đang phát audio...");
+        })
+        .catch(error => {
+            console.error("Không thể phát audio:", error);
+        });
+}
 async function removeRecordInVocabulary(id) {
     console.log(id)
     const deleteRecord = await deleteVocabulary(id)

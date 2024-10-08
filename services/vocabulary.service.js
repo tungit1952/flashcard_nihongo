@@ -11,6 +11,7 @@ const VocabularyService = {
             example: body.example,
             reading: body.reading
         }
+        console.log(objToSave)
         const newVocabulary = new Vocabulary(objToSave);
         return await newVocabulary.save();
     },
