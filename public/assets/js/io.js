@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('.select-muti').select2({
         placeholder: 'Lựa chọn'
     });
@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
 async function updateTagsInVocabulary() {
     let tags = []
     const tagsContainer = document.querySelector('#tags_container');
@@ -56,6 +57,59 @@ async function updateTagsInVocabulary() {
     })
     await updateActiveTag()
 }
+
+async function updateListInVocabulary() {
+    let vocabularies = []
+    const vocabTableBody = document.getElementById('vocabTableBody');
+    const response = await fetchVocabularies()
+    vocabularies = response.data
+    vocabTableBody.innerHTML = '';
+    vocabularies.forEach(vocab => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+                <td class="p-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <div class="flex flex-col">
+                            <p class="text-sm font-semibold text-slate-700">${vocab.word}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="p-4 border-b border-slate-200">
+                    <div class="flex flex-col">
+                        <p class="text-sm font-semibold text-slate-700">${vocab.translation}</p>
+                    </div>
+                </td>
+                <td class="p-4 border-b border-slate-200">
+                       <p class="text-sm font-semibold text-slate-700">${vocab.reading}</p>
+                </td>
+                <td class="p-4 border-b border-slate-200">
+                <div class="w-max">
+                        <div class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                            <span class="">${vocab.reading}</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-500">${vocab.tags.join(', ')}</p>
+                </td>
+                <td class="p-4 border-b border-slate-200">
+                    <div class="flex gap-[10px]">
+                        <i class="ri-search-eye-line text-[1.15rem] text-[#126265] cursor-pointer"></i>
+                        <i onclick="removeRecordInVocabulary(${vocab._id})" class="ri-delete-bin-6-line text-[1.15rem] text-red-700 cursor-pointer"></i>
+                    </div>
+                </td>
+            `;
+        const deleteIcon = row.querySelector('.ri-delete-bin-6-line');
+        deleteIcon.addEventListener('click', () => removeRecordInVocabulary(vocab._id));
+
+        vocabTableBody.appendChild(row);
+    });
+}
+
+async function removeRecordInVocabulary(id) {
+    console.log(id)
+    const deleteRecord = await deleteVocabulary(id)
+    await updateListInVocabulary()
+}
+
 function updateActiveTag() {
     const allTags = document.querySelectorAll('#tags_container > div');
     const newParams = new URLSearchParams(window.location.search);
@@ -69,6 +123,7 @@ function updateActiveTag() {
         }
     });
 }
+
 function pushParamKey(key) {
     const newParams = new URLSearchParams(window.location.search);
     let currentTags = newParams.get('tags') || '';

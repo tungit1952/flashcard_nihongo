@@ -2,9 +2,16 @@ const Vocabulary = require("../models/vocabulary.model");
 const {ValidationError} = require("../exceptions");
 
 const VocabularyService = {
-    async create(body) {
-        if (body.readings) body.readings = JSON.stringify(body.readings)
-        const newVocabulary = new Vocabulary(body);
+    async create(body, audioPath) {
+        const objToSave = {
+            word: body.word,
+            translation: body.translation,
+            audio: audioPath,
+            tags: body.tags,
+            example: body.example,
+            reading: body.reading
+        }
+        const newVocabulary = new Vocabulary(objToSave);
         return await newVocabulary.save();
     },
     async list(query) {

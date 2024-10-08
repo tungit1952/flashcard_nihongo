@@ -2,8 +2,9 @@ const VocabularyService = require("../../services/vocabulary.service");
 const vocabularyController = {
     create: async (request, response, next) => {
         try {
-            console.log(request.body)
-            const newVocabulary = await VocabularyService.create(request.body);
+            const fileAudioPath = `${process.env.APP_URL}/uploads/${request.file.filename}`;
+            const body  = request.body
+            const newVocabulary = await VocabularyService.create(body, fileAudioPath);
             response.status(201).json(newVocabulary);
         } catch (error) {
             next(error);

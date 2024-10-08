@@ -20,6 +20,9 @@ const Vocabulary = new Schema({
     example: {
         type: String,
     },
+    reading: {
+        type: String,
+    },
 })
 Vocabulary.plugin(mongoosePaginate);
 module.exports = mongoose.model('Vocabularies', Vocabulary);

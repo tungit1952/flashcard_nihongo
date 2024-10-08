@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Language Input</title>
+    <style>
+        .lang-selector {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="lang-selector">
+    <select id="languageSelect" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="vi">Vietnamese</option>
+        <option value="ja">Japanese</option>
+    </select>
+</div>
+<textarea id="textArea" rows="10" cols="30"></textarea>
+
+<script>
+    function changeLanguage() {
+        const lang = document.getElementById('languageSelect').value;
+        const textArea = document.getElementById('textArea');
+        if (lang === 'ja') {
+            // Chuyển sang bàn phím tiếng Nhật
+            textArea.setAttribute('lang', 'ja');
+            // Có thể cài đặt thêm IME ở đây nếu cần
+        } else if (lang === 'vi') {
+            // Chuyển sang bàn phím tiếng Việt
+            textArea.setAttribute('lang', 'vi');
+        } else {
+            // Chuyển sang bàn phím tiếng Anh
+            textArea.setAttribute('lang', 'en');
+        }
+        textArea.focus(); // Tự động lấy focus vào ô nhập
+    }
+</script>
+</body>
+</html>

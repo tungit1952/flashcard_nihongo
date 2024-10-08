@@ -12,7 +12,13 @@
                            placeholder="Nhập từ"/>
                 </div>
                 <div class="flex mt-3">
-                    <label class="text-[#126265] mb-0 self-center w-[10%]" for="key_input_word">Dịch:</label>
+                    <label class="text-[#126265] mb-0 self-center w-[10%]" for="reading_input_word">Đọc:</label>
+                    <input type="text" id="reading_input_word"
+                           class="w-full rounded-md border border-[#c5c5c5] px-3 py-2 text-sm focus:border-[#126265] focus:outline focus:outline-1"
+                           placeholder="Cách đọc của từ"/>
+                </div>
+                <div class="flex mt-3">
+                    <label class="text-[#126265] mb-0 self-center w-[10%]" for="translation_input_word">Dịch:</label>
                     <input type="text" id="translation_input_word"
                            class="w-full rounded-md border border-[#c5c5c5] px-3 py-2 text-sm focus:border-[#126265] focus:outline focus:outline-1"
                            placeholder="Dịch nghĩa của từ"/>
@@ -59,6 +65,7 @@
         try {
             const closeCreateVocabularyModalBtn = document.getElementById('closeCreateVocabularyModalBtn');
             const keyInputWord = document.getElementById('key_input_word');
+            const readingInputWord = document.getElementById('reading_input_word');
             const translationInput = document.getElementById('translation_input_word');
             const exampleInput = document.getElementById('example_input_tag');
             const audioInput = document.getElementById('audio_input');
@@ -68,6 +75,7 @@
 
             const payload = {
                 word: keyInputWord.value,
+                reading: readingInputWord.value,
                 translation: translationInput.value,
                 audio: audioInput.files[0],
                 tags: selectedTags,
@@ -76,6 +84,7 @@
             const response = await addVocabulary(payload)
             if (response.data) {
                 closeCreateVocabularyModalBtn.click();
+                await updateListInVocabulary()
             }
         } catch (e) {
             alert('Thất bại!')

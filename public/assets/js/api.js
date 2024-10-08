@@ -36,3 +36,18 @@ async function addVocabulary(payload) {
     }
 }
 
+async function fetchVocabularies(params) {
+    try {
+        return await axiosInstance.get('/api/vocabularies', {params});
+    } catch (error) {
+        console.error('fetchVocabularies thất bại!', error);
+    }
+}
+
+async function deleteVocabulary(id) {
+    try {
+        return await axiosInstance.delete(`/api/vocabularies/${id}`);
+    } catch (error) {
+        console.error('deleteVocabulary thất bại!', error);
+    }
+}
