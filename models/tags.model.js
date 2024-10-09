@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const typeVocabulary = require("../config/type_vocabulary.config");
 const status = require("../config/status.config");
 
 const Schema = mongoose.Schema;
